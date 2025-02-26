@@ -7,7 +7,7 @@ def load_dataset(filename):
         next(file)  # Skip header
         for line in file:
             parts = line.strip().split(',')
-            features = list(map(float, parts[:-1]))  # Convert features to float
+            features = list(map(float, parts[1:-1]))  # Convert features to float
             label = parts[-1]  # Class label
             dataset.append(features + [label])
     return dataset
@@ -109,9 +109,9 @@ for actual, predictions in test_conf_matrix.items():
     print(f"{actual}: {predictions}")
 
 # Test prediction
-test_vector = [5.1, 3.5, 1.4, 0.2, 0]  # Example input
-print(f"Expected feature length: {expected_feature_length}")
-print(f"Actual test vector length: {len(test_vector)}")
+test_vector = [5.1, 3.5, 1.4, 0.2]  # Example input
+# print(f"Expected feature length: {expected_feature_length}")
+# print(f"Actual test vector length: {len(test_vector)}")
 
 if len(test_vector) != expected_feature_length:
     raise ValueError(f"Test vector feature length mismatch: Expected {expected_feature_length}, but got {len(test_vector)}")

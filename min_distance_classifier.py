@@ -7,7 +7,7 @@ def load_dataset(filename):
         next(file)  # Skip header
         for line in file:
             parts = line.strip().split(',')
-            features = list(map(float, parts[:-1]))  # Convert features to float
+            features = list(map(float, parts[1:-1]))  # Convert features to float
             label = parts[-1]  # Class label
             dataset.append(features + [label])
     return dataset

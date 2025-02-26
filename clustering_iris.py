@@ -29,7 +29,7 @@ def load_iris_data(filename):
         reader = csv.reader(file)
         next(reader)  # Skip header if present
         for row in reader:
-            data.append([float(value) for value in row[:-1]])  # Feature values
+            data.append([float(value) for value in row[1:-1]])  # Feature values
             labels.append(row[-1])  # Class labels
     return data, labels
 
@@ -131,6 +131,9 @@ def plot_clusters(clusters, centroids):
 
 # Run the K-Means algorithm
 final_centroids, final_clusters, cluster_labels, true_labels = k_means("Iris.csv", k=3, seed=42)
+
+# Display Centroids in console
+print("Final centroids:", final_centroids)
 
 # Display both plots simultaneously
 plot_clusters(final_clusters, final_centroids)  # Show clusters
