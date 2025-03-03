@@ -124,6 +124,12 @@ training_data, testing_data = split_dataset(iris_data, N)
 
 # Compute centroids using the training data
 centroids = find_centroids(training_data)
+print("Centroids:")
+#print(centroids)
+print(f"Iris-virginica: {centroids['Iris-virginica']}")
+print(f"Iris-setosa: {centroids['Iris-setosa']}")
+print(f"Iris-versicolor: {centroids['Iris-versicolor']}\n")
+
 
 # Compute and display Accuracy & Precision
 train_accuracy = calculate_accuracy(training_data, centroids)
@@ -134,7 +140,7 @@ test_precision = calculate_precision(testing_data, centroids)
 print(f"Training Accuracy: {train_accuracy:.2f}")
 print(f"Testing Accuracy: {test_accuracy:.2f}")
 print(f"Training Precision: {train_precision:.2f}")
-print(f"Testing Precision: {test_precision:.2f}")
+print(f"Testing Precision: {test_precision:.2f}\n")
 
 # Test prediction
 test_vector = [5.1, 3.5, 1.4, 0.2]  # Example input

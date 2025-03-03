@@ -133,7 +133,7 @@ def plot_clusters(clusters, centroids):
 final_centroids, final_clusters, cluster_labels, true_labels = k_means("Iris.csv", k=3, seed=42)
 
 # Display Centroids in console
-print("Final centroids:", final_centroids)
+print(f"Final centroids: \n{final_centroids[0]}, \n{final_centroids[1]}, \n{final_centroids[2]}")
 
 # Display both plots simultaneously
 plot_clusters(final_clusters, final_centroids)  # Show clusters
