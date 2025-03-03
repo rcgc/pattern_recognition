@@ -100,7 +100,7 @@ train_accuracy = calculate_accuracy(training_data, training_data, k=3)
 test_accuracy = calculate_accuracy(testing_data, training_data, k=3)
 
 print(f"Training Accuracy: {train_accuracy:.2f}")
-print(f"Testing Accuracy: {test_accuracy:.2f}")
+print(f"Testing Accuracy: {test_accuracy:.2f}\n")
 
 # Compute and print confusion matrix
 test_conf_matrix = confusion_matrix(testing_data, training_data, k=3)
@@ -117,5 +117,5 @@ if len(test_vector) != expected_feature_length:
     raise ValueError(f"Test vector feature length mismatch: Expected {expected_feature_length}, but got {len(test_vector)}")
 
 predicted_class = knn_predict(training_data, test_vector, k=3)
-print(f"Test vector: {test_vector}")
+print(f"\nTest vector: {test_vector}")
 print(f"Predicted class: {predicted_class}")
