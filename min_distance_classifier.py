@@ -111,9 +111,28 @@ def calculate_precision(dataset, centroids):
     avg_precision = sum(precision_per_class.values()) / len(precision_per_class) if precision_per_class else 0
     return avg_precision
 
+# Compute the confusion matrix
+def compute_confusion_matrix(dataset, centroids):
+    labels = sorted(set(row[-1] for row in dataset))
+    label_to_index = {label: i for i, label in enumerate(labels)}
+    matrix = [[0 for _ in labels] for _ in labels]
+    
+    for row in dataset:
+        actual = row[-1]
+        predicted = predict(centroids, row[:-1])
+        matrix[label_to_index[actual]][label_to_index[predicted]] += 1
+    
+    print("Confusion Matrix:")
+    print(" ", "\t".join(labels))
+    for i, label in enumerate(labels):
+        if i==0:
+            print(label, "\t", "\t".join(map(str, matrix[i])))
+        else:
+            print(label, " ", "\t".join(map(str, matrix[i])))
+
 # Main Execution
 filename = "iris.csv"  # Change this to the actual file path
-N = 50  # Number of training instances
+N = 105  # Number of training instances
 
 # Load and shuffle dataset
 iris_data = load_dataset(filename)
@@ -146,4 +165,7 @@ print(f"Testing Precision: {test_precision:.2f}\n")
 test_vector = [5.1, 3.5, 1.4, 0.2]  # Example input
 print(f"Test vector: {test_vector}")
 predicted_class = predict(centroids, test_vector)
-print(f"Predicted class: {predicted_class}")
+print(f"Predicted class: {predicted_class}\n")
+
+# Compute and display confusion matrix
+compute_confusion_matrix(testing_data, centroids)
