@@ -173,3 +173,11 @@ cython_debug/
 # Images generated
 output.jpg
 output_fuzzy.jpg
+
+# Ignore generated image folders
+training/
+testing/
+models/
+
+# Generated models
+*.h5
