@@ -183,5 +183,4 @@ models/
 *.h5
 
 # Mnist
-mnist_train.csv
-mnist_test.csv
+*.csv
