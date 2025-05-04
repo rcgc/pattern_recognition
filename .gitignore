@@ -179,6 +179,9 @@ training/
 testing/
 models/
 
+# Ignore dataset_LSM folder
+dataset_LSM
+
 # Generated models
 *.h5
 
