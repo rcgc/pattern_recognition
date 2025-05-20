@@ -187,3 +187,6 @@ dataset_LSM
 
 # Mnist
 *.csv
+
+# Compressed files
+*.zip
