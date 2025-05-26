@@ -190,3 +190,6 @@ dataset_LSM
 
 # Compressed files
 *.zip
+
+# Exported models
+*.joblib
