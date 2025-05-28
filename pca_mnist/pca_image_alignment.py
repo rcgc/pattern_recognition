@@ -48,6 +48,12 @@ def process_image(image_flat):
     pc1 = pca.components_[0]
     pca_angle = np.arctan2(pc1[1], pc1[0]) * 180 / np.pi
 
+    # 🔧 Fix: Normalize PCA angle to [-90, 90] to avoid upside-down recovery
+    if pca_angle > 90:
+        pca_angle -= 180
+    elif pca_angle < -90:
+        pca_angle += 180
+
     recovered_img = rotate(rotated_img, -pca_angle, reshape=True)
     return original_img, rotated_img, recovered_img, angle, pca_angle, coords, pca, coords.mean(axis=0)
 
@@ -69,19 +75,19 @@ def show_grid(samples, labels):
     def imshow_with_grid(ax, img, title):
         ax.imshow(img, cmap='gray')
         ax.set_title(title)
-        
+
         # Set ticks at pixel boundaries
         grid_step = 4
         ax.set_xticks(np.arange(-0.5, img.shape[1], grid_step))
         ax.set_yticks(np.arange(-0.5, img.shape[0], grid_step))
-        
+
         # Show grid with white lines
         ax.grid(color='white', linestyle='-', linewidth=0.5, alpha=0.7)
-        
+
         # Hide tick labels but keep ticks and grid visible
         ax.set_xticklabels([])
         ax.set_yticklabels([])
-        
+
         # Hide axis spines for cleaner look
         for spine in ax.spines.values():
             spine.set_visible(False)
