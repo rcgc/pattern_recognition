@@ -1,4 +1,4 @@
-# Uses HOG with block normalization
+# Uses HOG simplified
 import os
 import numpy as np
 import pandas as pd
@@ -40,6 +40,17 @@ def compute_gradients(image):
     return magnitude, orientation
 
 def extract_hog(image, cell_size=8, bin_size=9):
+    """
+    Compute simplified HOG features without block normalization.
+
+    Parameters:
+        image (np.ndarray): Grayscale image (2D array)
+        cell_size (int): Size of the cell (cell_size x cell_size)
+        bin_size (int): Number of orientation bins
+
+    Returns:
+        np.ndarray: HOG feature vector (flattened cell histograms)
+    """
     magnitude, orientation = compute_gradients(image)
     h, w = image.shape
     n_cells_x = w // cell_size
@@ -58,14 +69,8 @@ def extract_hog(image, cell_size=8, bin_size=9):
                     bin_idx = int(cell_ori[y, x] // angle_unit) % bin_size
                     histogram[i, j, bin_idx] += cell_mag[y, x]
 
-    hog_vector = []
-    for i in range(n_cells_y - 1):
-        for j in range(n_cells_x - 1):
-            block = histogram[i:i+2, j:j+2, :].flatten()
-            norm = np.linalg.norm(block) + 1e-6
-            hog_vector.extend(block / norm)
+    return histogram.flatten()  # Result: 8*8*9 = 576 features
 
-    return np.array(hog_vector)
 
 def extract_features(image_path):
     image = Image.open(image_path).convert('L').resize((64, 64))
