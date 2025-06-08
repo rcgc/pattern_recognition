@@ -193,3 +193,26 @@ dataset_LSM
 
 # Exported models
 *.joblib
+
+# MNIST classes
+/final_project/0
+/final_project/1
+/final_project/2
+/final_project/3
+/final_project/4
+/final_project/5
+/final_project/6
+/final_project/7
+/final_project/8
+/final_project/9
+
+/img_reconstruction_momentum/0
+/img_reconstruction_momentum/1
+/img_reconstruction_momentum/2
+/img_reconstruction_momentum/3
+/img_reconstruction_momentum/4
+/img_reconstruction_momentum/5
+/img_reconstruction_momentum/6
+/img_reconstruction_momentum/7
+/img_reconstruction_momentum/8
+/img_reconstruction_momentum/9
