@@ -179,7 +179,7 @@ df_train = pd.read_csv("mnist_train.csv")
 df_train_labels = df_train['label']
 df_train = df_train.drop('label', axis=1)
 
-digit = 9
+digit = 8
 
 # Select first image with the desired digit
 sample_idx = df_train_labels[df_train_labels == digit].index[0]
